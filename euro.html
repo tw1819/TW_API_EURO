@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="euro.css">
+</head>
+<body>
+    <div id="control">
+        <button id="makekey">Gerar Chave</button>
+        <button id="clearkey">Limpar Chaves</button>
+    </div>
+    <div id="content">
+        <div class="chave">
+            <ul class="numeros">
+                <li>1</li>
+                <li>11</li>
+                <li>14</li>
+                <li>23</li>
+                <li>33</li>
+            </ul>
+            <ul class="estrelas">
+                <li>5</li>
+                <li>6</li>
+            </ul>
+        </div>
+
+    </div>
+</body>
+<script>
+
+    //debugger;
+    var bmake = document.getElementById("makekey");
+    var bclear = document.getElementById("clearkey");
+
+    bclear.onclick = function () {
+        var divcontent = document.getElementById("content");
+        divcontent.innerHTML = "";
+    }
+
+    bmake.addEventListener("click", function () {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET","euromilhoes.php");
+        xhr.onload = function () {
+            var chave = JSON.parse(xhr.responseText);
+            postChave(chave);
+        }
+        xhr.send();
+    });
+
+    function postChave(chave) {
+        // div.chave
+        var divchave = document.createElement("div");
+        divchave.className = "chave";
+
+        //ul.numeros
+        var uln = document.createElement("ul");
+        uln.className = "numeros";
+
+        //ul.estrelas
+        var ule = document.createElement("ul");
+        ule.className = "estrelas";
+
+        // preencher numeros 
+        chave.numeros.forEach(numero => {
+            let lin = document.createElement("li");
+            lin.innerHTML = numero;
+            uln.appendChild(lin);
+        });
+
+        // preencher estrelas 
+            chave.estrelas.forEach(numero => {
+            let lie = document.createElement("li");
+            lie.innerHTML = numero;
+            ule.appendChild(lie);
+        });
+
+        // append listas
+        divchave.appendChild(uln);
+        divchave.appendChild(ule);
+        // append do div
+
+        let divcontent = document.getElementById("content");
+        divcontent.appendChild(divchave);
+
+    }
+
+    function comparenumbers(a,b) {
+        return (a-b);
+    }
+    
+</script>
+</html>

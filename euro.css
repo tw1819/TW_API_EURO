@@ -1,0 +1,21 @@
+ul.estrelas li, ul.numeros li {
+    display: table-cell;
+    width : 30px;
+    height: 30px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 20px;
+    margin : 2px;
+    vertical-align: middle;
+}
+ul.estrelas li {
+    background-color: yellow;
+}
+
+ul.numeros li {
+    background-color: lime;
+}
+
+div.chave ul {display: inline-block}
