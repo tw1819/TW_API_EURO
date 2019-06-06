@@ -41,8 +41,17 @@
     }
 
     bmake.addEventListener("click", function () {
+        n = 10;
+        e = 2;
+        url = "euromilhoesv2.php"+
+                 "?"+
+                "numeros="+ 
+                n+ 
+                "&"+ 
+                "estrelas="+ 
+                e;
         var xhr = new XMLHttpRequest();
-        xhr.open("GET","euromilhoes.php");
+        xhr.open("GET",url);
         xhr.onload = function () {
             var chave = JSON.parse(xhr.responseText);
             postChave(chave);
